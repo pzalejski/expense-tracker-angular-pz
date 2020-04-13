@@ -1,0 +1,21 @@
+
+<mat-card>
+    <form [formGroup]='expForm' (ngSubmit)='onSubmit()'>
+        <mat-form-field>
+            <input type="text" matInput formControlName='expFirst' placeholder="First Name">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput formControlName='expLast' placeholder="Last Name">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput formControlName='expTravel' placeholder="travelAir">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput formControlName='expHotel' placeholder="Hotel Name">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput formControlName='expTotal' placeholder="Total Expenses">
+        </mat-form-field>
+        <button type='submit' mat-stroked-button>Submit Expenses</button>
+    </form>
+</mat-card>
