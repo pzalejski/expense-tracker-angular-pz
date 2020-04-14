@@ -1,0 +1,23 @@
+
+<h1 mat-dialog-title>Update Expense {{ data.id }}</h1>
+<form [formGroup]="expFormDg">
+    <mat-form-field>
+        <input type="text" matInput formControlName='expFirst' placeholder=" Update First Name">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="text" matInput formControlName='expLast' placeholder="Update Last Name">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="text" matInput formControlName='expTravel' placeholder="Update travelAir">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="text" matInput formControlName='expHotel' placeholder="Update Hotel Name">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="text" matInput formControlName='expTotal' placeholder="Update Total Expenses">
+    </mat-form-field>
+</form>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button mat-dialog-close="sendUpdate()">Update</button>
+</div>

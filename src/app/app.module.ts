@@ -13,13 +13,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
+import { ExpenseDialogComponent } from './expense-dialog/expense-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponentComponent,
-    ExpenseEntryComponent
+    ExpenseEntryComponent,
+    ExpenseDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { SharedModule } from './shared/shared.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

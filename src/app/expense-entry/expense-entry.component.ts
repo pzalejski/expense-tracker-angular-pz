@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore'
 import { AuthService } from '../services/auth.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'; 
+import { Expense } from '../expense-entry/expense.interface';
+import { ExpService } from '../services/exp.service';
+import { ExpenseDialogComponent } from '../expense-dialog/expense-dialog.component';
 
 @Component({
   selector: 'app-expense-entry',
@@ -12,7 +15,9 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 export class ExpenseEntryComponent implements OnInit {
 
   userId: string;
-  constructor(private afs: AngularFirestore, private auth: AuthService) { }
+  expenses: Expense[];
+  
+  constructor(private afs: AngularFirestore, private auth: AuthService, public expService: ExpService, public dialog: MatDialog) { }
   
   saveUserInfo() {
     this.auth.getUserInfo().subscribe(user => {
@@ -41,6 +46,27 @@ export class ExpenseEntryComponent implements OnInit {
       expTotal: this.expForm.value.expTotal
 
     })
+  }
+
+  showExpenses() {
+    this.expService.getExpenses().subscribe(expenses => {
+      console.log(expenses)
+      this.expenses = expenses;
+    })
+  }
+
+  openDialog(expIndex: string, documentId: string) {
+    const dialogRef = this.dialog.open(ExpenseDialogComponent, {
+      width: '250px',
+      data: { indexData: expIndex, fbdocumentId: documentId }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog has been closed')
+    })
+  }
+
+  deleteInfo(documentId: string) {
+    this.afs.collection('expenses').doc(documentId).delete();
   }
 
   ngOnInit(): void {

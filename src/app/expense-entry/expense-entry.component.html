@@ -19,3 +19,25 @@
         <button type='submit' mat-stroked-button>Submit Expenses</button>
     </form>
 </mat-card>
+
+
+<button mat-raised-button (click)="showExpenses()">Show Expenses</button>
+
+<mat-card *ngFor="let exp of expenses; let i = index">
+    <div>
+        <ul>
+            <li>Expense Index: {{ i }}</li>
+            <li>First Name: {{ exp.expFirst }}</li>
+            <li>Last Name: {{ exp.expLast }}</li>
+            <li>travelAir: {{ exp.expTravel }}</li>
+            <li>Hotel Name: {{ exp.expHotel }}</li>
+            <li>Total Expenses: {{ exp.expTotal }}</li>
+
+            <li>
+                <button mat-raised-button (click)="openDialog(i, exp.id)">Update Exp</button>
+                <span><button mat-raised-button (click)="deleteInfo(exp.id)">Delete Exp</button></span>
+            </li>
+        </ul>
+
+    </div>
+</mat-card>
